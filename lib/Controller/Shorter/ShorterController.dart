@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shortly/Config/Constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shortly/Controller/Provider/provider.dart';
+import 'package:shortly/Controller/Provider/authProvider.dart';
+import 'package:shortly/Controller/Provider/bitlyLinkProvider.dart';
 import 'package:shortly/Utils/Interface/Buttons.dart';
 import 'package:shortly/Utils/Interface/CustomColors.dart';
 import 'package:shortly/Utils/Interface/Labels.dart';
@@ -67,7 +68,7 @@ class _ShorterControllerState extends ConsumerState<ShorterController> {
                     child: Labels.drawBasicLabel(
                       "Willkommen zurück!",
                       bold: true,
-                      optionalFontSize: 34,
+                      optionalFontSize: 30,
                       color: Colors.black
                     ),
                   )
@@ -125,7 +126,7 @@ class _ShorterControllerState extends ConsumerState<ShorterController> {
                   height: 50,
                   child: Buttons.drawButtonWithIcon(
                     onPressed: () {
-                      shortUrl();
+                      shortUrl(ref);
                     },
                     title: "URL kürzen",
                     icon: Icons.add_circle_outline,
@@ -168,20 +169,37 @@ class _ShorterControllerState extends ConsumerState<ShorterController> {
     return didShowOnboarding;
   }
 
-  void shortUrl() async {
+  void shortUrl(WidgetRef ref) async {
 
     final longUrl = urlTextFieldController.text;
     final shortenUrl = await ref.read(shortUrlProvider(longUrl).future);
 
     if(shortenUrl != null) {
 
-      // TODO: Add firebase database services here ...
+      final currentUidAsyncValue = await ref.read(currentUidProvider.future);
 
       Clipboard.setData(ClipboardData(text: shortenUrl));
 
-      if(context.mounted) {
-        ToastNotification.showSuccessNotification(context, "URL gekürzt", "Link erfolgreich in der Bibliothek gespeichert und in die Zwischenablage kopiert!");
+      if(currentUidAsyncValue != null) {
+
+        Map<String, dynamic> bitlyLinkUserDataValues = {
+          Constants.longUrl: longUrl,
+          Constants.shortUrl: shortenUrl,
+          Constants.creationTimeStamp: DateTime.now().millisecondsSinceEpoch/1000
+        };
+
+        final success = await ref.read(bitlyServiceProvider).uploadBitlyLink(currentUidAsyncValue, bitlyLinkUserDataValues);
+
+        if(success) {
+          if(context.mounted) {
+            ToastNotification.showSuccessNotification(context, "URL gekürzt", "Link erfolgreich in der Bibliothek gespeichert und in die Zwischenablage kopiert!");
+          }
+        }
+        else {
+          ToastNotification.showErrorNotification(context, "Fehler beim speichern", "Die URL wurde in deine Zwischenablage kopiert aber konnte nicht gespeichert werden.");
+        }
       }
+
     }
     else {
       ToastNotification.showErrorNotification(context, "Fehler beim kürzen", "Dein Link konnte nicht gekürzt werden. Bitte versuche es erneut.");

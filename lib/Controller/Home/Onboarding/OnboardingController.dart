@@ -3,24 +3,33 @@ import 'package:concentric_transition/concentric_transition.dart';
 import 'package:shortly/Utils/Interface/CustomColors.dart';
 import 'package:shortly/Utils/Interface/Labels.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shortly/Utils/Interface/ToastNotification.dart';
 
-class OnboardingController extends StatefulWidget {
+import '../../../Config/Constants.dart';
+import '../../Provider/authProvider.dart';
+
+class OnboardingController extends ConsumerStatefulWidget {
+
   const OnboardingController({super.key});
 
   @override
-  State<OnboardingController> createState() => _OnboardingControllerState();
+  ConsumerState<OnboardingController> createState() => _OnboardingControllerState();
 }
 
-class _OnboardingControllerState extends State<OnboardingController> {
+class _OnboardingControllerState extends ConsumerState<OnboardingController> {
+
   @override
   Widget build(BuildContext context) {
+
     return Material(
       child: ConcentricPageView(
          colors: const <Color>[CustomColors.delftBlue, CustomColors.tropicalIndigo, CustomColors.delftBlue],
          itemCount: onboardingPages().length, // null = infinity
          physics: const NeverScrollableScrollPhysics(),
          onFinish: ()  {
-           Navigator.pop(context);
+           createAnonymousUser();
          },
          nextButtonBuilder: (context) {
            return const Center(
@@ -138,5 +147,27 @@ class _OnboardingControllerState extends State<OnboardingController> {
         ),
       ];
     }
+
+  /// Function will reset the onboarding value to make sure the user can try it later again
+  void resetOnboarding() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(Constants.didShowNearFieldOnBoarding, false);
+  }
+
+  void createAnonymousUser() async {
+
+    final auth = ref.watch(authenticationProvider);
+
+    bool signInSuccessful = await auth.signInUserAnonymously();
+
+    if(signInSuccessful && context.mounted) {
+      Navigator.pop(context);
+    }
+    else {
+      resetOnboarding();
+      ToastNotification.showErrorNotification(context, "Bitte versuche es erneut", "Wir konnten die App nicht für dich vorbereiten. Bitte versuche es erneut.");
+    }
+
+  }
 
 }
