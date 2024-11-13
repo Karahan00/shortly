@@ -47,6 +47,22 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^4.0.0
 
+  # BubbleBottomBar is a Flutter widget designed by cubertodesign and developed by westdabestdb
+  bubble_bottom_bar: ^2.0.0
+
+  # Concentric Transition effect. Useful for onboarding, page transitions etc.
+  concentric_transition: ^1.0.3
+
+  # Flutter plugin for reading and writing simple key-value pairs. Wraps
+  # NSUserDefaults on iOS and SharedPreferences on Android.
+  shared_preferences: ^2.0.15
+
+  # An SVG rendering and widget library for Flutter, which allows painting and displaying Scalable Vector Graphics 1.1 files.
+  flutter_svg: ^2.0.14
+
+  # Flutter plugin for getting commonly used locations on host platform file systems, such as the temp and app data directories.
+  path_provider: ^2.0.0
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -59,9 +75,10 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/onboarding/internet-global.svg
+    - assets/onboarding/library.svg
+    - assets/onboarding/friends.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
