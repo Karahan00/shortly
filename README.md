@@ -5,11 +5,11 @@
 </p>
 
 <p align="center">
-  <img src="https://your-app-icon-path.com/icon.png" alt="Shortly App Icon" width="200" height="200" />
+  <img src="https://drive.google.com/file/d/1h9roAGyNAyG1wLIuHdcZoCN8Dzc09zK8/view?usp=sharing" alt="Shortly App Icon" width="200" height="200" />
 </p>
 
 <p align="center">
-  <img src="https://your-gif-link.com/demo.gif" alt="App Demo GIF" width="400" />
+  <img src="https://drive.google.com/file/d/1r2U2-LYqSEcIOJBTaD74KRE4zTw41Al6/view?usp=sharing" alt="App Demo GIF" width="400" />
 </p>
 
 # Shortly App
@@ -32,7 +32,7 @@ Die **Shortly App** ist eine mobile Anwendung, die Nutzern hilft, lange URLs sch
 ## Technologien
 
 - **Frontend**: Flutter
-- **Backend**: Firebase
+- **Backend**: Dart • Firebase
 - **API**: Bitly API
 - **State Management**: Riverpod
 
@@ -83,6 +83,5 @@ Die **Shortly App** ist eine mobile Anwendung, die Nutzern hilft, lange URLs sch
 Für die Verbindung mit der **Bitly API** und **Firebase**, erstelle eine `.env`-Datei im Projektstammverzeichnis und füge deine Konfigurationswerte hinzu:
 
 ```bash
-FIREBASE_API_KEY=your_firebase_api_key
-FIREBASE_PROJECT_ID=your_project_id
-BITLY_API_KEY=your_bitly_api_key
+FIREBASE_PROJECT_ID=shortly-app-00
+BITLY_API_KEY=f615249334a118c0128d69d96c07e45c47bddfc4
