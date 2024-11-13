@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shortly/Controller/Provider/bitlyLinkProvider.dart';
 import 'package:shortly/Utils/Interface/CustomViews.dart';
 import 'package:shortly/Utils/Interface/Labels.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shortly/Utils/Interface/ToastNotification.dart';
 import 'package:shortly/Utils/common/DateTimeUtils.dart';
 import '../../Utils/Interface/CustomColors.dart';
 import '../Home/Onboarding/OnboardingController.dart';
@@ -143,6 +145,9 @@ Widget build(BuildContext context) {
                             ),
                             onTap: () {
                               // Optionally implement detail view on tap
+                              // Copy shortened URL to clipboard
+                              Clipboard.setData(ClipboardData(text: bitlyLinks[index].shortUrl));
+                              ToastNotification.showSuccessNotification(context, "Link kopiert", "Dein Link wurde in deine Zwischenablage kopiert.");
                             },
                           );
                         },
