@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:shortly/Controller/Home/HomeController.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'Config/Constants.dart';
 
-void main() async {
-  runApp(const MyApp());
+void main() {
+  runApp(
+    const ProviderScope(
+      child: ShortlyApp(),
+    )
+  );
 }
 
-class MyApp extends StatelessWidget {
+class ShortlyApp extends StatelessWidget {
 
-  const MyApp({super.key});
+  const ShortlyApp({super.key});
 
   // This widget is the root of your application.
   @override
