@@ -106,10 +106,11 @@ class _HomeControllerState extends State<HomeController> {
           ]
         ),
       ),
-      body: _screens[currentIndexForBottomNavigation],
+      body: _screens[currentIndexForBottomNavigation], // Displays the current screen based on the navigation index
     );
   }
 
+  // Method to change the page (switch between screens) based on the selected index
   void _changePage(int? index) {
     setState(() {
       currentIndexForBottomNavigation = index!;

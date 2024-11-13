@@ -13,6 +13,9 @@ import 'package:shortly/Utils/Interface/ToastNotification.dart';
 import '../Home/Onboarding/OnboardingController.dart';
 import 'package:toastification/toastification.dart';
 
+/// Controller for the URL shortening screen, allowing users to input a URL
+/// and shorten it using a Bitly service. This screen also handles user
+/// onboarding on first app launch.
 class ShorterController extends ConsumerStatefulWidget {
   const ShorterController({super.key});
 
@@ -22,7 +25,7 @@ class ShorterController extends ConsumerStatefulWidget {
 
 class _ShorterControllerState extends ConsumerState<ShorterController> {
 
-  // The controller for the url text field
+  // Controller for the URL input field
   final TextEditingController urlTextFieldController = TextEditingController();
 
   String? errorText;
@@ -39,6 +42,7 @@ class _ShorterControllerState extends ConsumerState<ShorterController> {
   @override
   Widget build(BuildContext context) {
 
+    // Check if the user is a first-time user and show onboarding if needed
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final didShowOnboarding = await checkIfFirstTimeUser();
       if(!didShowOnboarding) {
@@ -59,6 +63,7 @@ class _ShorterControllerState extends ConsumerState<ShorterController> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+              // Welcome label
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,6 +79,7 @@ class _ShorterControllerState extends ConsumerState<ShorterController> {
                   )
                 ],
               ),
+              // Description label
               Container(
                 padding: const EdgeInsets.only(left: 25.0, right: 25.0),
                 child: Labels.drawBasicLabel(
@@ -82,6 +88,7 @@ class _ShorterControllerState extends ConsumerState<ShorterController> {
                   optionalFontSize: 15
                 ),
               ),
+              // URL input field
               Container(
                 padding: const EdgeInsets.only(left: 25.0, top: 25.0, right: 25.0),
                 alignment: Alignment.center,
@@ -97,6 +104,7 @@ class _ShorterControllerState extends ConsumerState<ShorterController> {
                   iconColor: CustomColors.tropicalIndigo
                 ),
               ),
+              // Error message if URL is invalid
               if (errorText != null) Container(
                 padding: const EdgeInsets.only(left: 25.0, top: 5.0, right: 25.0),
                 child: Row(
@@ -119,6 +127,7 @@ class _ShorterControllerState extends ConsumerState<ShorterController> {
                   ],
                 ),
               ) else Container(),
+              // Button to shorten URL
               Container(
                 padding: const EdgeInsets.only(top: 15.0, left: 25.0, right: 25.0),
                 child: SizedBox(
@@ -169,6 +178,7 @@ class _ShorterControllerState extends ConsumerState<ShorterController> {
     return didShowOnboarding;
   }
 
+  /// Handles the URL shortening logic and updates the UI accordingly.
   void shortUrl(WidgetRef ref) async {
 
     final longUrl = urlTextFieldController.text;
@@ -178,6 +188,7 @@ class _ShorterControllerState extends ConsumerState<ShorterController> {
 
       final currentUidAsyncValue = await ref.read(currentUidProvider.future);
 
+      // Copy shortened URL to clipboard
       Clipboard.setData(ClipboardData(text: shortenUrl));
 
       if(currentUidAsyncValue != null) {

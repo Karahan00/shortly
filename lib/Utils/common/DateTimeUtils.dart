@@ -1,15 +1,48 @@
 import 'package:intl/intl.dart';
 
-// Returns a date string from given TimeStamp and format
+/// Returns a formatted date string from the given timestamp.
+///
+/// Converts the provided `TimeStamp` (in seconds) to a `DateTime` and formats it
+/// using the specified `format`. The default format is "dd.MM.yyyy".
+///
+/// Parameters:
+/// - `TimeStamp`: The timestamp in seconds to convert.
+/// - `format`: An optional string that defines the desired date format. The default value is "dd.MM.yyyy".
+///
+/// Returns:
+/// - A string representing the formatted date.
 String getDateFrom(int TimeStamp, {String? format = "dd.MM.yyyy"}){
   final dateFromTimeStamp = DateTime.fromMillisecondsSinceEpoch(TimeStamp * 1000);
   return DateFormat(format).format(dateFromTimeStamp);
 }
 
+/// Returns a formatted date string from the given `DateTime` object.
+///
+/// This function allows you to format any `DateTime` object using the specified `format`.
+/// The default format is "dd.MM.yyyy".
+///
+/// Parameters:
+/// - `date`: The `DateTime` object to format.
+/// - `format`: An optional string that defines the desired date format. The default value is "dd.MM.yyyy".
+///
+/// Returns:
+/// - A string representing the formatted date.
 String getDateWithFormat(DateTime date, {String? format = "dd.MM.yyyy"}) {
   return DateFormat(format).format(date);
 }
 
+/// Returns a human-readable string representing how much time has passed
+/// since the given timestamp.
+///
+/// This function calculates the difference between the current date and time
+/// and the provided `TimeStamp` (in seconds), returning a string that expresses
+/// the elapsed time in seconds, minutes, hours, days, weeks, months, or years.
+///
+/// Parameters:
+/// - `TimeStamp`: The timestamp (in seconds) to calculate the time difference from.
+///
+/// Returns:
+/// - A string representing the time passed (e.g., "vor 5 Minuten", "vor 2 Tagen", "vor 1 Jahr").
 String getTimeAgoDisplay(double TimeStamp) {
 
   var now = DateTime.now();

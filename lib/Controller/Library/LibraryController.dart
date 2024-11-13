@@ -40,6 +40,7 @@ Widget build(BuildContext context) {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+              // Header with library title
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,6 +56,7 @@ Widget build(BuildContext context) {
                   ),
                 ],
               ),
+              // Subheader with description of the library
               Container(
                 padding: const EdgeInsets.only(left: 25.0, right: 25.0),
                 child: Labels.drawBasicLabel(
@@ -73,6 +75,7 @@ Widget build(BuildContext context) {
                       if (bitlyLinks == null || bitlyLinks.isEmpty) {
                         return CustomViews.buildCustomNoDataView();
                       }
+                      // Display list of Bitly links
                       return ListView.builder(
                         itemCount: bitlyLinks.length,
                         itemBuilder: (BuildContext context, int index) {
