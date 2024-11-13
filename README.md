@@ -1,15 +1,10 @@
 <p align="left">
   <img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white" alt="Flutter Logo" width="200" height="70" />
   <img src="https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white" alt="Dart Logo" width="200" height="70" />
-  <img src="https://img.shields.io/badge/Android-v11.0-green" alt="Android Version" width="200" height="70" />
 </p>
 
-<p align="center">
-  <img src="https://drive.google.com/file/d/1h9roAGyNAyG1wLIuHdcZoCN8Dzc09zK8/view?usp=sharing" alt="Shortly App Icon" width="200" height="200" />
-</p>
-
-<p align="center">
-  <img src="https://drive.google.com/file/d/1r2U2-LYqSEcIOJBTaD74KRE4zTw41Al6/view?usp=sharing" alt="App Demo GIF" width="400" />
+<p align="left">
+  <img src="https://drive.google.com/uc?export=view&id=1h9roAGyNAyG1wLIuHdcZoCN8Dzc09zK8" alt="Shortly App Icon" width="200" height="200" />
 </p>
 
 # Shortly App
@@ -21,6 +16,10 @@
 ## Projektbeschreibung
 
 Die **Shortly App** ist eine mobile Anwendung, die Nutzern hilft, lange URLs schnell und einfach in kurze, geteilte Links umzuwandeln. Sie verwendet **Flutter** für das Frontend und nutzt Firebase für die Benutzerverwaltung und Datenhaltung. Mit der **Bitly API** werden URLs verkürzt und gespeichert.
+
+<p align="left">
+  <img src="https://drive.google.com/uc?export=view&id=1r2U2-LYqSEcIOJBTaD74KRE4zTw41Al6" alt="App Demo GIF" width="400" />
+</p>
 
 ## Features
 
