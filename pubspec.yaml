@@ -72,6 +72,22 @@ dev_dependencies:
   # Toastification is a Flutter package that allows you to easily show toast and notification messages in your application.
   toastification: ^2.3.0
 
+  # Flutter plugin for Firebase Core, enabling connecting to multiple Firebase apps.
+  firebase_core: ^3.7.0
+
+  # Flutter plugin for Firebase Auth, enabling Android and iOS
+  # authentication using passwords, phone numbers and identity providers like Google, Facebook and Twitter.
+  firebase_auth: ^5.3.2
+
+  # Flutter plugin for Firebase Database, a cloud-hosted NoSQL
+  # database with realtime data syncing across Android and iOS clients, and offline access.
+  firebase_database: ^11.1.5
+
+  # Contains code to deal with internationalized/localized messages, date
+  # and number formatting and parsing, bi-directional text, and other internationalization issues.
+  intl: ^0.19.0
+
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -88,6 +104,7 @@ flutter:
     - assets/onboarding/internet-global.svg
     - assets/onboarding/library.svg
     - assets/onboarding/friends.svg
+    - assets/onboarding/no_data_view.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
