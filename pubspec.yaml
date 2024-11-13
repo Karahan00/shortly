@@ -63,6 +63,15 @@ dev_dependencies:
   # Flutter plugin for getting commonly used locations on host platform file systems, such as the temp and app data directories.
   path_provider: ^2.0.0
 
+  # A reactive caching and data-binding framework. Riverpod makes working with asynchronous code a breeze.
+  flutter_riverpod: ^2.6.1
+
+  # A powerful HTTP networking package, supports Interceptors, Aborting and canceling a request, Custom adapters, Transformers, etc.
+  dio: ^5.7.0
+
+  # Toastification is a Flutter package that allows you to easily show toast and notification messages in your application.
+  toastification: ^2.3.0
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
